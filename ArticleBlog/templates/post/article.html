@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+{% block body %}
+{% if articles %}
+{% for article in articles %}
+<div class="card  container-table" >
+
+  <div class="row g-0">
+      <div class="col-sm-5">
+        {% if article.article_image %}
+        <img src="{{article.article_image.url}}" class="card-img-top h-100" alt="...">
+        {% endif %}
+      </div>
+      <div class="col-sm-7">
+          <div class="card-body">
+            <h5 class="card-title text-center">{{article.title}}</h5>
+            <br>
+            <p class="card-text">{{article.content}}</p>
+             <!-- <a href="#" class="btn btn-primary stretched-link">View Profile</a>-->
+             <div class="card-footer text-muted">
+                {{article.author}} tarfaından yayınlandı
+            </div>
+          </div>
+      </div>
+      <div class="card-footer text-muted">
+        {{article.created_date}}
+    </div>
+  </div>
+</div>
+  {% endfor %}
+ 
+  {% else %}
+
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <h4 class="text-center">Aranılan Makale Bulunamadı!!</h4>
+  </div>
+
+
+
+
+  
+  
+  {% endif %}
+
+  
+{% endblock body %}

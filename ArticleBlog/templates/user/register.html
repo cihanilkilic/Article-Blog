@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% block body %}
+<div class="container-fluid mt-2 ">
+ <!--  <h6>Kayıt Sayfası</h6>-->
+
+    <form method="POST">
+        {% csrf_token %}
+        {% if error %}
+        <div class="alert alert-danger">
+            {{error}}
+        </div>
+        {% endif %}
+        <div class="row mb-3">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Adınız" name="firstname" value="{{ firstname }}" required="">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Soyadınız" name="lastname" value="{{ lastname }}" required="">
+            </div>
+        </div>
+    
+        <div class="mb-3">
+            <input type="email" class="form-control" placeholder="Email"  name="email" value="{{ email }}" required="">
+        </div>
+    
+        <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Kullanıcı-Adınız"  name="username" value="{{ username }}" required="">
+        </div>
+    
+        <div class="row mb-3">
+            <div class="col">
+                <input type="password" class="form-control" placeholder="Şifre"  name="password" required="">
+            </div>
+            <div class="col">
+                <input type="password" class="form-control" placeholder="Şifre-Tekrar"  name="repassword" required="">
+            </div>
+        </div>
+        <div class="mb-3 text-center d-grid gap-2">
+            <input type="submit" value="Kayıt Oluştur" class="btn btn-primary ">
+        </div>
+        
+        <div class="text-center mt-1">
+            <div class="alert alert-success fs-3" role="alert">
+               Zaten bir hesaba sahibim? <a href="{% url 'user:Login' %}" class="alert-link">Giriş Yap</a>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+
+{% endblock %}

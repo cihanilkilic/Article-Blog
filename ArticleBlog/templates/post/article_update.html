@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% block body %}
+güncelleme sayfası
+<form class="form-control container" style="width:800px;" method="POST" enctype="multipart/form-data">
+     {% csrf_token %}
+
+    <div class="mb-3 form-floating">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Başlık" name="title">
+        <label for="floatingInput">Başlık</label>
+    </div>
+    <div class="mb-3 form-floating" >
+            <textarea class="form-control" placeholder="İçerik" name="content" id="floatingTextarea" style="height:200px;"></textarea>
+            <label for="floatingTextarea">İçerik</label>
+    </div>
+    <div class="mb-3">
+      <!-- <label for="formFile" class="form-label">Default file input example</label>-->
+      <input class="form-control" type="file" id="formFile" name="article_image">
+    </div>
+    <div class="mb-3 form-check">
+    </div>
+ 
+
+
+    {% if success %}
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <h4 class="text-center">{{success}}!</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+
+    {% endif %}
+    
+    {% if hata %}
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <h4 class="text-center">{{hata}}</h4>
+        <button type="submit" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+
+    {% endif %}
+  
+  
+  
+    <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="submit">Kaydet</button>
+        
+      </div>
+  </form>
+{% endblock body %}

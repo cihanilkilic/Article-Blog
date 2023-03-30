@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% block body %}
+{% comment %} <h1>{{request.user.username}}</h1> {% endcomment %}
+{% if articles %}     
+
+<table class="table table-striped table-hover table-bordered border-primar ymt-3">
+
+    <thead>
+      <tr class="table-active">
+        <th scope="col">ID</th>
+        <th scope="col">Başlık</th>
+        <th scope="col">Yazar</th>
+        <th scope="col">Tarih</th>
+        <th scope="col">Güncelle</th>
+        <th scope="col">Sil</th>
+      <!-- <th scope="col">Güncelle</th>
+        <th scope="col">Sil</th>--> 
+      </tr>
+
+    {% for article in articles %}
+    
+    <tr>
+        <th scope="row">{{article.id}}</th>
+        <td><a href="{% url 'article:article_detail' article.id %}">{{article.title}}</a></td>
+        <td>{{article.author.username}}</td>
+        <td>{{article.created_date}}</td>
+        <td >
+          
+          <a href="{% url 'article:article_update' article.id %}" class="btn btn-warning d-block mt-1">Güncelle</a>
+          
+        <td><a href="{% url 'article:article_delete' article.id %}" class="btn btn-danger d-block mt-1">Sil</a></td>
+      </tr>
+    
+      {% endfor %}
+    
+    
+    {% else %}
+    <div class="alert alert-danger alert-dismissible fade show mt-3" style="height:500px;" role="alert">
+        <h4 class="text-center" style="padding:250px 0px">Herhangi Bir Makaleniz Bulunmamaktadır</h4>
+        <button type="button"  data-bs-dismiss="alert" ></button>
+      </div>
+    
+
+    {% endif %}
+
+
+ 
+
+
+    </tbody>
+  </table>
+
+{% endblock body %}
